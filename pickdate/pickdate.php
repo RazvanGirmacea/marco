@@ -1,13 +1,3 @@
-<?php
-# Sample Vars
-$L_E_month = 11;
-$L_E_day   = 3;
-$L_E_year  = 2014;
-
-$L_P_month = 12;
-$L_P_day   = 5;
-$L_P_year  = 2014;
-?>
 <html>
     <head>
 
@@ -58,7 +48,7 @@ $L_P_year  = 2014;
                            id="L_E_date"
                            name="L_E_date"
                            class="textboxx"
-                           value="<?= date('m/d/Y', mktime(null, null, null, $L_E_month, $L_E_day, $L_E_year)) ?>">
+                           value="<?= ($L_E_month && $L_E_day && $L_E_year) ? date('m/d/Y', mktime(null, null, null, $L_E_month, $L_E_day, $L_E_year)) : date('m/d/Y') ?>">
 
                     <img src="pickadate_icon.jpg" id="L_E_datepicker">
                 </td>
@@ -108,7 +98,7 @@ $L_P_year  = 2014;
                            id="L_P_date"
                            name="L_P_date"
                            class="textboxx"
-                           value="<?= date('m/d/Y', mktime(null, null, null, $L_P_month, $L_P_day, $L_P_year)) ?>">
+                           value="<?= ($L_P_month && $L_P_day && $L_P_year) ? date('m/d/Y', mktime(null, null, null, $L_P_month, $L_P_day, $L_P_year)) : date('m/d/Y') ?>">
 
                     <img src="pickadate_icon.jpg" id="L_P_datepicker">
 

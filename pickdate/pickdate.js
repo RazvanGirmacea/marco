@@ -22,7 +22,9 @@ $('document').ready(function() {
     });
 
     $('#L_E_day, #L_E_month, #L_E_year').on('change', function(){
-       $('#L_E_date').datepicker('setDate', makeDate('E'));
+        if ($('#L_E_month').val() && $('#L_E_day').val() && $('#L_E_year').val()) {
+            $('#L_E_date').datepicker('setDate', makeDate('E'));
+        }
     });
 
     $('#L_E_datepicker').on('click', function() {
@@ -54,7 +56,9 @@ $('document').ready(function() {
     });
 
     $('#L_P_day, #L_P_month, #L_P_year').on('change', function(){
-        $('#L_P_date').datepicker('setDate', makeDate('P'));
+        if ($('#L_P_month').val() && $('#L_P_day').val() && $('#L_P_year').val()) {
+            $('#L_P_date').datepicker('setDate', makeDate('P'));
+        }
     });
 
     $('#L_P_datepicker').on('click', function() {
