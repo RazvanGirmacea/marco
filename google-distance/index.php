@@ -1,3 +1,10 @@
+<?php
+
+# This will be the vars at the top of the page:
+$address1 = "529 5th Ave, New York, NY 10017";
+$address2 = "1131 5th St, Miami Beach, FL 33139";
+
+?>
 <html>
 <head>
 
@@ -6,17 +13,21 @@
 
     var geocoder, location1, location2, gDir;
 
+    var address1 = '<?= $address1 ?>';
+    var address2 = '<?= $address2 ?>';
+
     function initialize() {
         geocoder = new GClientGeocoder();
         gDir = new GDirections();
         GEvent.addListener(gDir, "load", function() {
             var drivingDistanceMiles = gDir.getDistance().meters / 1609.344;
-            document.getElementById('results').innerHTML = '' + drivingDistanceMiles + '';
+            document.getElementById('results').innerHTML = '' + Math.round(drivingDistanceMiles) + '';
         });
+        showLocation();
     }
 
     function showLocation() {
-        geocoder.getLocations(document.forms[0].address1.value, function (response) {
+        geocoder.getLocations(address1, function (response) {
             if (!response || response.Status.code != 200)
             {
                 alert("");
@@ -24,7 +35,7 @@
             else
             {
                 location1 = {lat: response.Placemark[0].Point.coordinates[1], lon: response.Placemark[0].Point.coordinates[0], address: response.Placemark[0].address};
-                geocoder.getLocations(document.forms[0].address2.value, function (response) {
+                geocoder.getLocations(address2, function (response) {
                     if (!response || response.Status.code != 200)
                     {
                         alert("");
@@ -43,15 +54,6 @@
 </head>
 
 <body onload="initialize()">
-
-    <form action="#" onsubmit="showLocation(); return false;">
-        <p>
-            <input type="text" name="address1" value="" />
-            <input type="text" name="address2" value="" />
-            <input type="submit" value="Search" />
-        </p>
-    </form>
-    <p id="results"></p>
-
+    <p id="results">Getting distance ... <img src="http://preloaders.net/preloaders/89/Fading%20line.gif" width="16"></p>
 </body>
 </html>
